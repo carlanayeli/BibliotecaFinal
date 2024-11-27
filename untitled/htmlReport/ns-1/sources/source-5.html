@@ -1,0 +1,157 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>Coverage Report > Fecha</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example</a>
+</div>
+
+<h1>Coverage Summary for Class: Fecha (org.example)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat
+">
+  Class, %
+</th>
+<th class="coverageStat
+">
+  Method, %
+</th>
+<th class="coverageStat
+">
+  Branch, %
+</th>
+<th class="coverageStat
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Fecha</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (10/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    77.8%
+  </span>
+  <span class="absValue">
+    (14/18)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (19/19)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example;
+&nbsp;public class Fecha {
+&nbsp;    private int dia;
+&nbsp;    private int mes;
+&nbsp;    private int anio;
+&nbsp;
+<b class="fc">&nbsp;    public Fecha(int dia, int mes, int anio) {</b>
+<b class="fc">&nbsp;        this.dia = dia;</b>
+<b class="fc">&nbsp;        this.mes = mes;</b>
+<b class="fc">&nbsp;        this.anio = anio;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Getters y Setters
+<b class="fc">&nbsp;    public int getDia() { return dia; }</b>
+<b class="fc">&nbsp;    public void setDia(int dia) { this.dia = dia; }</b>
+<b class="fc">&nbsp;    public int getMes() { return mes; }</b>
+<b class="fc">&nbsp;    public void setMes(int mes) { this.mes = mes; }</b>
+<b class="fc">&nbsp;    public int getAnio() { return anio; }</b>
+<b class="fc">&nbsp;    public void setAnio(int anio) { this.anio = anio; }</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String toString() {
+<b class="fc">&nbsp;        return String.format(&quot;%02d/%02d/%04d&quot;, dia, mes, anio);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public boolean esValida() {
+<b class="pc">&nbsp;        if (anio &lt; 1900 || anio &gt; 2100) return false;</b>
+<b class="pc">&nbsp;        if (mes &lt; 1 || mes &gt; 12) return false;</b>
+<b class="pc">&nbsp;        if (dia &lt; 1) return false;</b>
+&nbsp;
+<b class="fc">&nbsp;        int[] diasPorMes = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};</b>
+<b class="fc">&nbsp;        if (esAnioBisiesto()) {</b>
+<b class="fc">&nbsp;            diasPorMes[1] = 29;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return dia &lt;= diasPorMes[mes - 1];</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private boolean esAnioBisiesto() {
+<b class="pc">&nbsp;        return (anio % 4 == 0 &amp;&amp; anio % 100 != 0) || (anio % 400 == 0);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+
+    <div style="float:right;">generated on 2024-11-24 22:15</div>
+</div>
+</body>
+</html>

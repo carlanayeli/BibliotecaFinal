@@ -1,0 +1,142 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>Coverage Report > Libro</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example</a>
+</div>
+
+<h1>Coverage Summary for Class: Libro (org.example)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat
+">
+  Class, %
+</th>
+<th class="coverageStat
+">
+  Method, %
+</th>
+<th class="coverageStat
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Libro</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (12/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/17)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example;
+&nbsp;
+&nbsp;public class Libro {
+&nbsp;    private int idLibro;
+&nbsp;    private String titulo;
+&nbsp;    private String autor;
+&nbsp;    private String editorial;
+&nbsp;    private int anio;
+&nbsp;
+<b class="fc">&nbsp;    public Libro(int idLibro, String titulo, String autor, String editorial, int anio) {</b>
+<b class="fc">&nbsp;        this.idLibro = idLibro;</b>
+<b class="fc">&nbsp;        this.titulo = titulo;</b>
+<b class="fc">&nbsp;        this.autor = autor;</b>
+<b class="fc">&nbsp;        this.editorial = editorial;</b>
+<b class="fc">&nbsp;        this.anio = anio;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Getters y Setters
+<b class="fc">&nbsp;    public int getIdLibro() { return idLibro; }</b>
+<b class="fc">&nbsp;    public void setIdLibro(int idLibro) { this.idLibro = idLibro; }</b>
+<b class="fc">&nbsp;    public String getTitulo() { return titulo; }</b>
+<b class="fc">&nbsp;    public void setTitulo(String titulo) { this.titulo = titulo; }</b>
+<b class="fc">&nbsp;    public String getAutor() { return autor; }</b>
+<b class="fc">&nbsp;    public void setAutor(String autor) { this.autor = autor; }</b>
+<b class="fc">&nbsp;    public String getEditorial() { return editorial; }</b>
+<b class="fc">&nbsp;    public void setEditorial(String editorial) { this.editorial = editorial; }</b>
+<b class="fc">&nbsp;    public int getAnio() { return anio; }</b>
+<b class="fc">&nbsp;    public void setAnio(int anio) { this.anio = anio; }</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String toString() {
+<b class="fc">&nbsp;        return &quot;ID Libro: &quot; + idLibro +</b>
+&nbsp;                &quot;\nTítulo: &quot; + titulo +
+&nbsp;                &quot;\nAutor: &quot; + autor +
+&nbsp;                &quot;\nEditorial: &quot; + editorial +
+&nbsp;                &quot;\nAño: &quot; + anio + &quot;\n&quot;;
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+
+    <div style="float:right;">generated on 2024-11-24 22:15</div>
+</div>
+</body>
+</html>

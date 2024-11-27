@@ -1,0 +1,243 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>Coverage Report > ABCUsuarios</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example</a>
+</div>
+
+<h1>Coverage Summary for Class: ABCUsuarios (org.example)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat
+">
+  Class, %
+</th>
+<th class="coverageStat
+">
+  Method, %
+</th>
+<th class="coverageStat
+">
+  Branch, %
+</th>
+<th class="coverageStat
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ABCUsuarios</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    83.3%
+  </span>
+  <span class="absValue">
+    (5/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (27/36)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    92.5%
+  </span>
+  <span class="absValue">
+    (49/53)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;import javax.swing.JOptionPane;
+&nbsp;
+&nbsp;//manages user objects to check register new users and see if it already exist/list them
+<b class="fc">&nbsp;public class ABCUsuarios {</b>
+<b class="fc">&nbsp;    private List&lt;Usuario&gt; listaDeUsuarios = new ArrayList&lt;&gt;();</b>
+&nbsp;
+&nbsp;    //checks if id exist already, i changed from Private to Public
+&nbsp;    public boolean existeUsuario(int id) {
+<b class="fc">&nbsp;        for (Usuario usuario : listaDeUsuarios) {</b>
+<b class="fc">&nbsp;            if (usuario.getId() == id) {</b>
+<b class="fc">&nbsp;                return true;</b>
+&nbsp;            }
+&nbsp;        }
+<b class="fc">&nbsp;        return false;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    //registers
+&nbsp;    public void registrarUsuario() {
+&nbsp;        int id;
+&nbsp;        String nombre;
+&nbsp;        String domicilio;
+&nbsp;        int telefono;
+&nbsp;        String email;
+&nbsp;        String ine;
+&nbsp;
+&nbsp;        // Log to indicate that the method is being called
+<b class="fc">&nbsp;        System.out.println(&quot;Starting user registration...&quot;);</b>
+&nbsp;
+&nbsp;        // Check if user ID is unique
+&nbsp;        do {
+&nbsp;            try {
+<b class="fc">&nbsp;                String input = JOptionPane.showInputDialog(&quot;Introduce ID del usuario:&quot;);</b>
+<b class="fc">&nbsp;                if (input == null) return; // User canceled the input</b>
+<b class="fc">&nbsp;                System.out.println(&quot;User ID input received: &quot; + input); // Log input</b>
+<b class="fc">&nbsp;                id = Integer.parseInt(input);</b>
+&nbsp;
+<b class="pc">&nbsp;                if (id &lt;= 0) {</b>
+<b class="nc">&nbsp;                    JOptionPane.showMessageDialog(null, &quot;El ID debe ser un número positivo.&quot;);</b>
+&nbsp;                    continue;
+&nbsp;                }
+<b class="fc">&nbsp;                if (existeUsuario(id)) {</b>
+<b class="fc">&nbsp;                    JOptionPane.showMessageDialog(null, &quot;El usuario ya existe, por favor verifique el ID.&quot;);</b>
+<b class="fc">&nbsp;                    System.out.println(&quot;ID already exists: &quot; + id); // Log ID check result</b>
+&nbsp;                    continue;
+&nbsp;                }
+&nbsp;                break;
+&nbsp;            } catch (NumberFormatException e) {
+<b class="fc">&nbsp;                JOptionPane.showMessageDialog(null, &quot;Por favor, ingrese un número válido para el ID.&quot;);</b>
+<b class="fc">&nbsp;                System.out.println(&quot;Invalid ID format entered.&quot;); // Log invalid ID input</b>
+&nbsp;            }
+&nbsp;        } while (true);
+&nbsp;
+&nbsp;        // Proceed with other inputs
+<b class="fc">&nbsp;        nombre = JOptionPane.showInputDialog(&quot;Nombre del usuario:&quot;);</b>
+<b class="pc">&nbsp;        if (nombre == null || nombre.trim().isEmpty()) {</b>
+<b class="fc">&nbsp;            JOptionPane.showMessageDialog(null, &quot;El nombre no puede estar vacío.&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+<b class="fc">&nbsp;        System.out.println(&quot;User name entered: &quot; + nombre); // Log name input</b>
+&nbsp;
+<b class="fc">&nbsp;        domicilio = JOptionPane.showInputDialog(&quot;Domicilio:&quot;);</b>
+<b class="pc">&nbsp;        if (domicilio == null || domicilio.trim().isEmpty()) {</b>
+<b class="nc">&nbsp;            JOptionPane.showMessageDialog(null, &quot;El domicilio no puede estar vacío.&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+<b class="fc">&nbsp;        System.out.println(&quot;User address entered: &quot; + domicilio); // Log address input</b>
+&nbsp;
+&nbsp;        do {
+&nbsp;            try {
+<b class="fc">&nbsp;                String input = JOptionPane.showInputDialog(&quot;Teléfono:&quot;);</b>
+<b class="pc">&nbsp;                if (input == null) return; // User canceled the input</b>
+<b class="fc">&nbsp;                telefono = Integer.parseInt(input);</b>
+<b class="pc">&nbsp;                if (telefono &lt;= 0) {</b>
+<b class="nc">&nbsp;                    JOptionPane.showMessageDialog(null, &quot;El teléfono debe ser un número positivo.&quot;);</b>
+&nbsp;                    continue;
+&nbsp;                }
+&nbsp;                break;
+&nbsp;            } catch (NumberFormatException e) {
+<b class="fc">&nbsp;                JOptionPane.showMessageDialog(null, &quot;Por favor, ingrese un número válido para el teléfono.&quot;);</b>
+<b class="fc">&nbsp;                System.out.println(&quot;Invalid phone number format entered.&quot;); // Log invalid phone input</b>
+&nbsp;            }
+&nbsp;        } while (true);
+&nbsp;
+<b class="fc">&nbsp;        email = JOptionPane.showInputDialog(&quot;Email:&quot;);</b>
+<b class="pc">&nbsp;        if (email == null || email.trim().isEmpty() || !email.contains(&quot;@&quot;)) {</b>
+<b class="fc">&nbsp;            JOptionPane.showMessageDialog(null, &quot;Por favor, ingrese un email válido.&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+<b class="fc">&nbsp;        System.out.println(&quot;User email entered: &quot; + email); // Log email input</b>
+&nbsp;
+<b class="fc">&nbsp;        ine = JOptionPane.showInputDialog(&quot;INE:&quot;);</b>
+<b class="pc">&nbsp;        if (ine == null || ine.trim().isEmpty()) {</b>
+<b class="fc">&nbsp;            JOptionPane.showMessageDialog(null, &quot;El INE no puede estar vacío.&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+<b class="fc">&nbsp;        System.out.println(&quot;User INE entered: &quot; + ine); // Log INE input</b>
+&nbsp;
+&nbsp;        // Create the new user and add to list
+<b class="fc">&nbsp;        Usuario nuevoUsuario = new Usuario(id, nombre, domicilio, telefono, email, ine);</b>
+<b class="fc">&nbsp;        listaDeUsuarios.add(nuevoUsuario);</b>
+<b class="fc">&nbsp;        System.out.println(&quot;User successfully registered with ID: &quot; + id); // Log successful registration</b>
+<b class="fc">&nbsp;        JOptionPane.showMessageDialog(null, &quot;Usuario registrado exitosamente.&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String mostrarUsuarios() {
+<b class="fc">&nbsp;        if (listaDeUsuarios.isEmpty()) {</b>
+<b class="fc">&nbsp;            return &quot;No hay usuarios registrados.&quot;;</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            StringBuilder sb = new StringBuilder(&quot;Usuarios registrados:\n\n&quot;);</b>
+<b class="fc">&nbsp;            for (Usuario usuario : listaDeUsuarios) {</b>
+<b class="fc">&nbsp;                sb.append(usuario.toString()).append(&quot;\n&quot;);</b>
+&nbsp;            }
+<b class="fc">&nbsp;            return sb.toString();</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public List&lt;Usuario&gt; getListaDeUsuarios() {
+<b class="fc">&nbsp;        return listaDeUsuarios;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setListaDeUsuarios(List&lt;Usuario&gt; listaDeUsuarios) {
+<b class="nc">&nbsp;        this.listaDeUsuarios = listaDeUsuarios;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+
+    <div style="float:right;">generated on 2024-11-24 22:15</div>
+</div>
+</body>
+</html>

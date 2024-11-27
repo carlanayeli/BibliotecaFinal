@@ -1,0 +1,218 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>Coverage Report > ABCPrestamos</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example</a>
+</div>
+
+<h1>Coverage Summary for Class: ABCPrestamos (org.example)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat
+">
+  Class, %
+</th>
+<th class="coverageStat
+">
+  Method, %
+</th>
+<th class="coverageStat
+">
+  Branch, %
+</th>
+<th class="coverageStat
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ABCPrestamos</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    87.5%
+  </span>
+  <span class="absValue">
+    (7/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (15/30)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    65.2%
+  </span>
+  <span class="absValue">
+    (30/46)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;import javax.swing.JOptionPane;
+&nbsp;
+<b class="fc">&nbsp;public class ABCPrestamos {</b>
+<b class="fc">&nbsp;    public List&lt;Prestamo&gt; listaDePrestamos = new ArrayList&lt;&gt;();</b>
+&nbsp;
+&nbsp;    //CARLA ADDED GETTER HERE:
+&nbsp;    public List&lt;Prestamo&gt; getListaDePrestamos() {
+<b class="fc">&nbsp;        return listaDePrestamos;</b>
+&nbsp;    }
+&nbsp;    public void registrarPrestamos(List&lt;Usuario&gt; usuarios, List&lt;Libro&gt; libros) {
+<b class="pc">&nbsp;        if (usuarios.isEmpty() || libros.isEmpty()) {</b>
+<b class="fc">&nbsp;            JOptionPane.showMessageDialog(null, &quot;No hay usuarios o libros registrados para realizar un préstamo.&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        int idUsuario = Integer.parseInt(JOptionPane.showInputDialog(&quot;Ingrese el ID del usuario:&quot;));</b>
+<b class="fc">&nbsp;        int idLibro = Integer.parseInt(JOptionPane.showInputDialog(&quot;Ingrese el ID del libro:&quot;));</b>
+&nbsp;
+<b class="fc">&nbsp;        Usuario usuario = buscarUsuario(usuarios, idUsuario);</b>
+<b class="fc">&nbsp;        Libro libro = buscarLibro(libros, idLibro);</b>
+&nbsp;
+<b class="pc">&nbsp;        if (usuario == null || libro == null) {</b>
+<b class="fc">&nbsp;            JOptionPane.showMessageDialog(null, &quot;Usuario o libro no encontrado.&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        Fecha fechaPrestamo = obtenerFecha(&quot;préstamo&quot;);</b>
+<b class="fc">&nbsp;        Fecha fechaDevolucion = obtenerFecha(&quot;devolución&quot;);</b>
+&nbsp;
+<b class="fc">&nbsp;        Prestamo nuevoPrestamo = new Prestamo(idUsuario, idLibro, fechaPrestamo, fechaDevolucion);</b>
+<b class="fc">&nbsp;        listaDePrestamos.add(nuevoPrestamo);</b>
+&nbsp;
+<b class="fc">&nbsp;        JOptionPane.showMessageDialog(null, &quot;Préstamo registrado exitosamente.&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void devolverPrestamo() {
+<b class="pc">&nbsp;        if (listaDePrestamos.isEmpty()) {</b>
+<b class="fc">&nbsp;            JOptionPane.showMessageDialog(null, &quot;No hay préstamos registrados.&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        int idUsuario = Integer.parseInt(JOptionPane.showInputDialog(&quot;Ingrese el ID del usuario:&quot;));</b>
+<b class="nc">&nbsp;        int idLibro = Integer.parseInt(JOptionPane.showInputDialog(&quot;Ingrese el ID del libro:&quot;));</b>
+&nbsp;
+<b class="nc">&nbsp;        Prestamo prestamoADevolver = null;</b>
+<b class="nc">&nbsp;        for (Prestamo prestamo : listaDePrestamos) {</b>
+<b class="nc">&nbsp;            if (prestamo.getIdUsuario() == idUsuario &amp;&amp; prestamo.getIdLibro() == idLibro) {</b>
+<b class="nc">&nbsp;                prestamoADevolver = prestamo;</b>
+&nbsp;                break;
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        if (prestamoADevolver == null) {</b>
+<b class="nc">&nbsp;            JOptionPane.showMessageDialog(null, &quot;No se encontró el préstamo especificado.&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        listaDePrestamos.remove(prestamoADevolver);</b>
+<b class="nc">&nbsp;        JOptionPane.showMessageDialog(null, &quot;Devolución registrada exitosamente.&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void mostrarPrestamos() {
+<b class="nc">&nbsp;        if (listaDePrestamos.isEmpty()) {</b>
+<b class="nc">&nbsp;            JOptionPane.showMessageDialog(null, &quot;No hay préstamos registrados.&quot;);</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            StringBuilder sb = new StringBuilder(&quot;Préstamos registrados:\n\n&quot;);</b>
+<b class="nc">&nbsp;            for (Prestamo prestamo : listaDePrestamos) {</b>
+<b class="nc">&nbsp;                sb.append(prestamo.toString()).append(&quot;\n&quot;);</b>
+&nbsp;            }
+<b class="nc">&nbsp;            JOptionPane.showMessageDialog(null, sb.toString());</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private Usuario buscarUsuario(List&lt;Usuario&gt; usuarios, int id) {
+<b class="fc">&nbsp;        for (Usuario usuario : usuarios) {</b>
+<b class="fc">&nbsp;            if (usuario.getId() == id) {</b>
+<b class="fc">&nbsp;                return usuario;</b>
+&nbsp;            }
+&nbsp;        }
+<b class="fc">&nbsp;        return null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private Libro buscarLibro(List&lt;Libro&gt; libros, int id) {
+<b class="fc">&nbsp;        for (Libro libro : libros) {</b>
+<b class="fc">&nbsp;            if (libro.getIdLibro() == id) {</b>
+<b class="fc">&nbsp;                return libro;</b>
+&nbsp;            }
+&nbsp;        }
+<b class="fc">&nbsp;        return null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private Fecha obtenerFecha(String tipo) {
+<b class="fc">&nbsp;        int dia = Integer.parseInt(JOptionPane.showInputDialog(&quot;Ingrese el día de &quot; + tipo + &quot;:&quot;));</b>
+<b class="fc">&nbsp;        int mes = Integer.parseInt(JOptionPane.showInputDialog(&quot;Ingrese el mes de &quot; + tipo + &quot;:&quot;));</b>
+<b class="fc">&nbsp;        int anio = Integer.parseInt(JOptionPane.showInputDialog(&quot;Ingrese el año de &quot; + tipo + &quot;:&quot;));</b>
+<b class="fc">&nbsp;        return new Fecha(dia, mes, anio);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+
+    <div style="float:right;">generated on 2024-11-24 22:15</div>
+</div>
+</body>
+</html>
