@@ -41,7 +41,7 @@ class ABCUsuariosTest {
     }
 
     @Test
-    void testRegistrarUsuarioLongName() {
+    void testRULongName() {
         try (MockedStatic<JOptionPane> mockedJOptionPane = Mockito.mockStatic(JOptionPane.class)) {
 
             mockedJOptionPane.when(() -> JOptionPane.showInputDialog("Introduce ID del usuario:")).thenReturn("1");
@@ -69,14 +69,14 @@ class ABCUsuariosTest {
     }
 
     @Test
-    void testMostrarUsuarios_EmptyList() {
+    void testMostrarUser_Empty() {
 
         String resultado = abcUsuarios.mostrarUsuarios();
         assertEquals("No hay usuarios registrados.", resultado, "Mensaje de usuarios vacíos no coincide.");
     }
 
     @Test
-    void testMostrarUsuarios_WithUsers() {
+    void MostrarWithUsers() {
 
         abcUsuarios.getListaDeUsuarios().add(usuario);
 
@@ -87,7 +87,7 @@ class ABCUsuariosTest {
 
     //so tech this does pass because they should be gettin gprompted to input another user until its different.
     @Test
-    void testRegistrarUsuarioConIDExistente() {
+    void RUExistingID() {
         abcUsuarios.getListaDeUsuarios().add(usuario);
 
         try (MockedStatic<JOptionPane> mockedJOptionPane = Mockito.mockStatic(JOptionPane.class)) {
@@ -107,7 +107,7 @@ class ABCUsuariosTest {
     }
 
     @Test
-    void testRegistrarUsuario_InvalidID() {
+    void RUInvalidID() {
         try (MockedStatic<JOptionPane> mockedJOptionPane = Mockito.mockStatic(JOptionPane.class)) {
             mockedJOptionPane.when(() -> JOptionPane.showInputDialog("Introduce ID del usuario:"))
                     .thenReturn("abc")
@@ -129,7 +129,7 @@ class ABCUsuariosTest {
 
     //test for empty name
     @Test
-    void testRegistrarUsuario_EmptyName() {
+    void RUEmptyName() {
         try (MockedStatic<JOptionPane> mockedJOptionPane = Mockito.mockStatic(JOptionPane.class)) {
             mockedJOptionPane.when(() -> JOptionPane.showInputDialog("Introduce ID del usuario:")).thenReturn("2");
             mockedJOptionPane.when(() -> JOptionPane.showInputDialog("Nombre del usuario:")).thenReturn("");
@@ -146,7 +146,7 @@ class ABCUsuariosTest {
     }
 
     @Test
-    void testRegistrarUsuario_InvalidPhoneNumber() {
+    void RUInvalidNumber() {
         try (MockedStatic<JOptionPane> mockedJOptionPane = Mockito.mockStatic(JOptionPane.class)) {
             mockedJOptionPane.when(() -> JOptionPane.showInputDialog("Introduce ID del usuario:")).thenReturn("3");
             mockedJOptionPane.when(() -> JOptionPane.showInputDialog("Nombre del usuario:")).thenReturn("Alice Smith");
@@ -169,7 +169,7 @@ class ABCUsuariosTest {
 
     //test for invalid email
     @Test
-    void testRegistrarUsuario_InvalidEmail() {
+    void RUInvalidEmail() {
         try (MockedStatic<JOptionPane> mockedJOptionPane = Mockito.mockStatic(JOptionPane.class)) {
             mockedJOptionPane.when(() -> JOptionPane.showInputDialog("Introduce ID del usuario:")).thenReturn("4");
             mockedJOptionPane.when(() -> JOptionPane.showInputDialog("Nombre del usuario:")).thenReturn("Bob Johnson");
@@ -186,7 +186,7 @@ class ABCUsuariosTest {
     }
 
     @Test
-    void testRegistrarUsuario_CancelInput() {
+    void RUCanelInput() {
         try (MockedStatic<JOptionPane> mockedJOptionPane = Mockito.mockStatic(JOptionPane.class)) {
             mockedJOptionPane.when(() -> JOptionPane.showInputDialog("Introduce ID del usuario:")).thenReturn("5");
             mockedJOptionPane.when(() -> JOptionPane.showInputDialog("Nombre del usuario:")).thenReturn("Carol White");
