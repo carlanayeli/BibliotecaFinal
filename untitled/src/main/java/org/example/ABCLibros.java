@@ -3,12 +3,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-// Manage list of books/functionality to register, see if they already exist,
-// and display the list of books.
+
 public class ABCLibros {
   public List<Libro> listaDeLibros = new ArrayList<>();
 
-  // check if book with gived ID already exist in book list via a loop
   boolean existeLibro(int id) {
     for (Libro libro : listaDeLibros) {
       if (libro.getIdLibro() == id) {
@@ -18,7 +16,7 @@ public class ABCLibros {
     return false;
   }
 
-  /** This function registers a book */
+
   public void registrarLibro() {
     int idLibro; // must be positve integer and unique
     String titulo; // title cant be empty
@@ -84,7 +82,7 @@ public class ABCLibros {
     JOptionPane.showMessageDialog(null, "Libro registrado exitosamente.");
   }
 
-  // generates string representation of all books in list. osea hay o no hay
+
   public String mostrarLibros() {
     if (listaDeLibros.isEmpty()) {
       return "No hay libros registrados.";

@@ -41,9 +41,7 @@ class ABCLibrosTest {
   // Test the `registrarLibro` method with valid data
   @Test
   public void RBValidInput() {
-    // Mock the static method using MockedStatic
     try (MockedStatic<JOptionPane> mockedJOptionPane = mockStatic(JOptionPane.class)) {
-      // Define what the static method should return
       mockedJOptionPane
           .when(() -> JOptionPane.showInputDialog(anyString()))
           .thenReturn("1") // First call to showInputDialog
@@ -52,7 +50,6 @@ class ABCLibrosTest {
           .thenReturn("Valid Publisher") // Fourth call
           .thenReturn("2024"); // Fifth call
 
-      // Register the book
       abcLibros.registrarLibro();
 
       // Check if the book was successfully added to the list
@@ -65,18 +62,17 @@ class ABCLibrosTest {
   // FAILED - trying to register book with invalid ID
   @Test
   public void RBInvalidInput() {
-    // Mock the static method using MockedStatic
     try (MockedStatic<JOptionPane> mockedJOptionPane = mockStatic(JOptionPane.class)) {
       // Simulate an invalid ID (negative number)
       mockedJOptionPane
           .when(() -> JOptionPane.showInputDialog(anyString()))
-          .thenReturn("-1") // First call: invalid ID
-          .thenReturn("Valid Title") // Second call: valid title
-          .thenReturn("Valid Author") // Third call: valid author
-          .thenReturn("Valid Publisher") // Fourth call: valid publisher
-          .thenReturn("2024"); // Fifth call: valid year
+          .thenReturn("-1")
+          .thenReturn("Valid Title")
+          .thenReturn("Valid Author")
+          .thenReturn("Valid Publisher")
+          .thenReturn("2024");
 
-      // Try to register the book
+
       abcLibros.registrarLibro();
 
       // Check that no book is added to the list (because the ID is invalid)
@@ -88,9 +84,9 @@ class ABCLibrosTest {
   // test checking when user enters empty title
   @Test
   public void RBEmptyTitle() {
-    // Mock the static method using MockedStatic
+
     try (MockedStatic<JOptionPane> mockedJOptionPane = mockStatic(JOptionPane.class)) {
-      // Simulate empty title (second input dialog)
+
       mockedJOptionPane
           .when(() -> JOptionPane.showInputDialog(anyString()))
           .thenReturn("1") // First call: valid ID
@@ -99,30 +95,27 @@ class ABCLibrosTest {
           .thenReturn("Valid Publisher") // Fourth call: valid publisher
           .thenReturn("2024"); // Fifth call: valid year
 
-      // Try to register the book
+
       abcLibros.registrarLibro();
 
-      // Check that no book is added to the list (because the title is empty)
+
       assertEquals(0, abcLibros.getListaDeLibros().size());
     }
   }
 
-  // check to view book list
+
   @Test
   public void testMostrarLibros() {
     // Test when no books are registered
     String noBooksMessage = abcLibros.mostrarLibros();
     assertEquals("No hay libros registrados.", noBooksMessage);
 
-    // Add a book to the list
     Libro libro = new Libro(bookID, bookTitle, bookAuthor, bookPublisher, bookYear);
     abcLibros.getListaDeLibros().add(libro);
 
-    // Test when there is one book registered
     String expectedMessage =
         "Libros registrados:\n\nID Libro: 1\nTítulo: Moby Dick\nAutor: Herman Melville\nEditorial: NY, Dodd, Mead and Company\nAño: 1922\n\n";
 
-    // Actual message from the method
     String actualMessage = abcLibros.mostrarLibros();
     System.out.println(
         "Actual message: " + actualMessage); // Debugging line to see the actual output
@@ -147,7 +140,6 @@ class ABCLibrosTest {
     assertEquals(bookTitle, libros.get(0).getTitulo());
   }
 
-  // failed becaue it took input for non numerical ID
   @Test
   public void RBInvalidNNum() {
     try (MockedStatic<JOptionPane> mockedJOptionPane = mockStatic(JOptionPane.class)) {
@@ -159,7 +151,6 @@ class ABCLibrosTest {
           .thenReturn("Valid Publisher")
           .thenReturn("2024");
 
-      // Try to register the book with an invalid ID
       abcLibros.registrarLibro();
 
       // Validate that no book was added (ID is invalid)
